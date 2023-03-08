@@ -1,3 +1,10 @@
+/**
+ * https://www.electronjs.org/docs/latest/api/app
+ * Useful documentation.
+ */
+
+
+
 // Modules
 const {app, BrowserWindow} = require('electron')
 
@@ -39,6 +46,11 @@ function createWindow () {
 // Electron `app` is ready
 app.on('ready', () => {
   console.log('App Ready')
+
+  console.log(app.getPath('desktop'))
+  console.log(app.getPath('music'))
+  console.log(app.getPath('temp'))
+  console.log(app.getPath('userData'))
   createWindow()
 })
 
