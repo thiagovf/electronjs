@@ -52,6 +52,9 @@ app.on('activate', () => {
   if (mainWindow === null) createWindow()
 })
 
-app.on('before-quit', () => {
-  console.log('App is quitting!')
+app.on('before-quit', e => {
+  console.log('App is preventing quit!')
+  e.preventDefault()
+  console.log('Save DB something for example!')
+  e.quit()
 })
