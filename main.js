@@ -56,5 +56,12 @@ app.on('before-quit', e => {
   console.log('App is preventing quit!')
   e.preventDefault()
   console.log('Save DB something for example!')
-  e.quit()
+})
+
+app.on('browser-window-blur', () => {
+  console.log('App unfocused')
+})
+
+app.on('browser-window-focus', () => {
+  console.log('App focused')
 })
