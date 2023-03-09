@@ -27,12 +27,18 @@ function createWindow () {
       // Disable 'contextIsolation' to allow 'nodeIntegration'
       // 'contextIsolation' defaults to "true" as from Electron v12
       contextIsolation: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      show: false
     }
   })
 
   // Load index.html into the new BrowserWindow
   mainWindow.loadFile('index.html')
+
+  // Showing window gracefully 
+  // https://www.electronjs.org/docs/latest/api/browser-window#showing-the-window-gracefully
+  //mainWindow.on('ready-to-show')
+  mainWindow.once('ready-to-show', mainWindow.show)
 
   // Open DevTools - Remove for PRODUCTION!
   mainWindow.webContents.openDevTools();
