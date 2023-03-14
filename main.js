@@ -36,7 +36,9 @@ function createWindow () {
     width: 600, height: 300,
     webPreferences: {
       contextIsolation: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      parent: mainWindow,
+      modal: true
     }
   })
 
