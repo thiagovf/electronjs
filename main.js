@@ -7,6 +7,7 @@
 
 // Modules
 const {app, BrowserWindow} = require('electron')
+const windowStateKeeper = require('electron-window-state')
 
 const bcrypt = require('bcrypt')
 bcrypt.hash('myPlaintextPassword', 10, function(err, hash) {
@@ -19,9 +20,16 @@ let mainWindow, secondaryWindow
 
 // Create a new BrowserWindow when `app` is ready
 function createWindow () {
+  let winState = windowStateKeeper({
+    defaultWidth: 1000,
+    defaultHeight: 800
+  })
 
   mainWindow = new BrowserWindow({
-    width: 1000, height: 800,
+    width: winState.width, 
+    height: winState.height,
+    x: winState.x,
+    y: winState.y,
     minHeight: 150, 
     minWidth: 300,
     webPreferences: {
@@ -47,6 +55,8 @@ function createWindow () {
   // Load index.html into the new BrowserWindow
   mainWindow.loadFile('index.html')
   secondaryWindow.loadFile('secundary.html')
+
+  winState.manage(mainWindow)
 
   // Showing window gracefully 
   // https://www.electronjs.org/docs/latest/api/browser-window#showing-the-window-gracefully
